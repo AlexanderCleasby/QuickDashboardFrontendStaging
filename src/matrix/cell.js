@@ -15,7 +15,7 @@ export default class Cell extends Component{
             <div
               style={this.props.highlighted ? {...this.props.style,backgroundColor:this.props.highlighted} : this.props.style}
               className="cell"
-              onDrop={(e)=>{console.log('drop')}}
+              onDrop={this.props.dropWidget}
               onDragOver={(e)=>{e.preventDefault()}}
               onDragEnter={(e)=>{
                 this.props.handleDragOver(e,this.props.coords)

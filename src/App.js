@@ -17,8 +17,8 @@ export default class App extends Component {
     }
   }
 
-  placeWidget=(e,v)=>{
-    console.log('dropped')
+  dropWidget=(e,v)=>{
+    this.setState({placedWidgets:[...this.state.placedWidgets,this.state.pickedUpWidget]})
   }
   
   handleMatrixDragOver = (e,coords)=>{
@@ -45,9 +45,9 @@ export default class App extends Component {
     return ( 
       
         <div className = "App container " >
-          <Matrix  pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} widgets={this.state.placedWidgets} width={4} height={4} / >
+          <Matrix dropWidget={this.dropWidget}  pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} widgets={this.state.placedWidgets} width={5} height={4} / >
           <div className='sidebar'>
-            <TickerWidget placeWidget={this.placeWidget} color={"#FFCC22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <TickerWidget color={"#FFCC22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
             <TickerWidget color={"#FFACAA"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
             <MapWidget color={"#99cc22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
           </div>

@@ -38,6 +38,7 @@ export default class Matrix extends Component {
             {Array.from(new Array(this.props.width), (x, j) => (
               <Cell
                 handleDragOver={this.props.handleDragOver}
+                dropWidget={this.props.dropWidget}
                 coords={{ x: i, y: j }}
                 style={this.cellStyle}
                 highlighted={this.isCellHighlighted(i, j)}
