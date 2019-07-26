@@ -13,41 +13,43 @@ export default class App extends Component {
     super()
     this.state={
       placedWidgets:[],
-      pickedUpWidget:{x:null,y:null,width:2,height:1}
+      pickedUpWidget:{state:{x:null,y:null,width:2,height:1}}
     }
   }
 
-  placeWidget=()=>{
+  placeWidget=(e,v)=>{
     console.log('dropped')
   }
   
   handleMatrixDragOver = (e,coords)=>{
-    console.log(e,coords)
     this.setState((prevState)=>{
       let newState = prevState.pickedUpWidget
-      newState.x = coords.x
-      newState.y = coords.y
+      newState.state.x = coords.x
+      newState.state.y = coords.y
       return {pickedUpWidget:newState}
+      
     })
   }
 
   handleDragStart = (e,widget) => {
-    console.log(widget);
+    this.setState({pickedUpWidget:widget})
   };
 
-  hadnleDragEnd=()=>{
-    this.setState({pickedUpWidget:{width:2,height:1}})
+  hadnleDragEnd=(e)=>{
+    e.preventDefault()
+    console.log('dragEnd')
+    this.setState({pickedUpWidget:{state:{x:null,y:null,width:2,height:1}}})
   }
 
   render() {
     return ( 
       
         <div className = "App container " >
-          <Matrix placeWidget={this.placeWidget} pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} widgets={this.state.placedWidgets} width={4} height={4} / >
+          <Matrix  pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} widgets={this.state.placedWidgets} width={4} height={4} / >
           <div className='sidebar'>
-            <TickerWidget handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
-            <TickerWidget handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
-            <MapWidget handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <TickerWidget placeWidget={this.placeWidget} color={"#FFCC22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <TickerWidget color={"#FFACAA"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <MapWidget color={"#99cc22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
           </div>
         </div>
       

@@ -5,23 +5,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./widget.scss";
 
 export default class Widget extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-        color:this.props.color,
-        width:4,
-        height:2
+        x:null,
+        y:null,
+        width:2,
+        height:4
     };
   }
 
 
-  handleDragEnd = () => {
-    console.log("down");
-  };
+
 
   render() {
     //React throws out the drag
-    
       return (
         <div className="widget">
           <div
@@ -30,8 +28,9 @@ export default class Widget extends Component {
             <div className="logo"
                           draggable
                           onDragStart={e=>this.props.handleDragStart(e,this)}
-                          onDragEnd={this.handleDragEnd}
-                          onDragEnd={this.props.hadnleDragEnd}> 
+                          onDragEnd={this.props.hadnleDragEnd}
+                          onDrop={this.props.placeWidget}
+                          style={{backgroundColor:this.props.color}}> 
             <FontAwesomeIcon
               
               icon={this.icon}

@@ -18,11 +18,15 @@ export default class Matrix extends Component {
   };
 
   isCellHighlighted = (x, y) => {
-    return this.props.pickedUpWidget.x != null
+    
+    if (this.props.pickedUpWidget.state.x != null
     &&
-     (x >= this.props.pickedUpWidget.x && x < this.props.pickedUpWidget.x + this.props.pickedUpWidget.width)
+     (x >= this.props.pickedUpWidget.state.x && x < this.props.pickedUpWidget.state.x + this.props.pickedUpWidget.state.width)
     &&
-    (y >= this.props.pickedUpWidget.y && y < this.props.pickedUpWidget.y + this.props.pickedUpWidget.height)
+    (y >= this.props.pickedUpWidget.state.y && y < this.props.pickedUpWidget.state.y + this.props.pickedUpWidget.state.height)){
+      
+      return this.props.pickedUpWidget.props.color
+    }
     
   };
 
