@@ -18,7 +18,9 @@ export default class App extends Component {
   }
 
   dropWidget=(e,v)=>{
-    this.setState({placedWidgets:[...this.state.placedWidgets,this.state.pickedUpWidget]})
+    if (!this.state.placedWidgets.find((widget)=>this.state.pickedUpWidget.props.id===widget.props.id)){
+      this.setState({placedWidgets:[...this.state.placedWidgets,this.state.pickedUpWidget]})
+    }
   }
   
   handleMatrixDragOver = (e,coords)=>{
@@ -45,11 +47,11 @@ export default class App extends Component {
     return ( 
       
         <div className = "App container " >
-          <Matrix dropWidget={this.dropWidget}  pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} widgets={this.state.placedWidgets} width={5} height={4} / >
+          <Matrix dropWidget={this.dropWidget}  pickedUpWidget={this.state.pickedUpWidget} handleDragOver={this.handleMatrixDragOver} placedWidgets={this.state.placedWidgets} width={5} height={4} / >
           <div className='sidebar'>
-            <TickerWidget color={"#FFCC22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
-            <TickerWidget color={"#FFACAA"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
-            <MapWidget color={"#99cc22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <TickerWidget id={1} color={"#FFCC22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <TickerWidget id={2} color={"#FFACAA"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
+            <MapWidget id={3} color={"#99cc22"} handleDragStart={this.handleDragStart} hadnleDragEnd={this.hadnleDragEnd} name = 'wooh' / >
           </div>
         </div>
       
