@@ -11,7 +11,7 @@ export default class Widget extends Component {
         x:null,
         y:null,
         width:2,
-        height:4
+        height:1
     };
   }
 
